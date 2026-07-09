@@ -24,7 +24,7 @@ export default async function NewReviewPage({ params }: { params: Promise<{ id: 
       },
     });
 
-    redirect(`/restaurants/${id}`);
+    redirect(`/restaurants/${id}?success=review_created`);
   }
 
   // Preload restaurant name for header text

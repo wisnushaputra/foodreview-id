@@ -55,7 +55,7 @@ export default function NewRestaurantPage() {
       },
     });
 
-    redirect("/");
+    redirect("/?success=restaurant_created");
   }
 
   return (

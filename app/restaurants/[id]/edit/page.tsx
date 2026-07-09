@@ -55,7 +55,7 @@ export default async function EditRestaurantPage({ params }: { params: Promise<{
       },
     });
 
-    redirect(`/restaurants/${id}`);
+    redirect(`/restaurants/${id}?success=restaurant_updated`);
   }
 
   // Preload existing data

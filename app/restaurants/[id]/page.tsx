@@ -45,7 +45,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
     } catch (e) {
       console.error("Gagal menghapus restoran:", e);
     }
-    redirect("/");
+    redirect("/?success=restaurant_deleted");
   }
 
   // Server Action untuk menghapus ulasan
@@ -61,7 +61,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
     } catch (e) {
       console.error("Gagal menghapus ulasan:", e);
     }
-    redirect(`/restaurants/${resolvedParams.id}`);
+    redirect(`/restaurants/${resolvedParams.id}?success=review_deleted`);
   }
 
   // Helper untuk merender bintang SVG

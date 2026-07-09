@@ -31,7 +31,7 @@ export default async function EditReviewPage({ params }: { params: Promise<{ id:
       },
     });
 
-    redirect(`/restaurants/${id}`);
+    redirect(`/restaurants/${id}?success=review_updated`);
   }
 
   // Preload existing review data

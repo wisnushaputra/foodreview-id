@@ -24,6 +24,10 @@ Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL
   - Kotak pencarian real-time untuk mencari restoran berdasarkan nama, menu, deskripsi, atau kota.
   - Dropdown filter lokasi dinamis yang mengekstrak daftar kota unik langsung dari database.
   - Halaman kosong (*empty state*) interaktif lengkap dengan tombol reset jika pencarian tidak membuahkan hasil.
+- **Pemberitahuan Visual (Toast Notification)**:
+  - Notifikasi melayang (*toast popup*) yang elegan di pojok kanan bawah dengan transisi *slide-in* halus.
+  - Secara otomatis menampilkan konfirmasi sukses/gagal setelah operasi CRUD (Tambah/Edit/Hapus Restoran atau Ulasan).
+  - Dilengkapi ikon status berbasis konteks, tombol tutup instan, serta sistem pembersihan parameter URL agar notifikasi tidak terulang ketika halaman di-refresh.
 - **CRUD Ulasan & Rating**:
   - Tulis ulasan baru lengkap dengan nama pengulas, ulasan teks, dan pilihan rating bintang (1-5) menggunakan selector bintang interaktif.
   - Edit ulasan yang sudah ditulis sebelumnya.
