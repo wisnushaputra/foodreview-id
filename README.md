@@ -28,6 +28,11 @@ Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL
   - Notifikasi melayang (*toast popup*) yang elegan di pojok kanan bawah dengan transisi *slide-in* halus.
   - Secara otomatis menampilkan konfirmasi sukses/gagal setelah operasi CRUD (Tambah/Edit/Hapus Restoran atau Ulasan).
   - Dilengkapi ikon status berbasis konteks, tombol tutup instan, serta sistem pembersihan parameter URL agar notifikasi tidak terulang ketika halaman di-refresh.
+- **Halaman Statistik & Dashboard**:
+  - Halaman kustom di `/dashboard` yang menyajikan ringkasan metrik utama (Total Restoran terdaftar, Total Ulasan diterbitkan, Rata-rata Rating bintang, dan Kota Teraktif).
+  - Visualisasi grafik progress bar dinamis untuk sebaran jumlah restoran di setiap wilayah.
+  - Daftar ulasan terbaru lengkap dengan tautan dinamis langsung ke halaman detail restoran bersangkutan.
+  - Mendukung fallback otomatis berbasis memori agar dashboard tetap terisi saat database kosong.
 - **CRUD Ulasan & Rating**:
   - Tulis ulasan baru lengkap dengan nama pengulas, ulasan teks, dan pilihan rating bintang (1-5) menggunakan selector bintang interaktif.
   - Edit ulasan yang sudah ditulis sebelumnya.

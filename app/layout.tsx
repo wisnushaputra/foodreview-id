@@ -51,13 +51,18 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 w-full glass-card border-x-0 border-t-0 border-b border-zinc-200/40 dark:border-zinc-800/40 bg-white/75 dark:bg-zinc-950/75 backdrop-blur-md">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
-              <div className="flex-1">
+              <div className="flex-1 flex items-center gap-6">
                 <Link href="/" className="group flex items-center gap-2 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 dark:bg-zinc-50 text-white dark:text-zinc-950 font-black text-sm group-hover:scale-105 transition-transform duration-200">
                     FR
                   </span>
                   FoodReview<span className="text-zinc-400 dark:text-zinc-500 font-normal">.id</span>
                 </Link>
+
+                <nav className="hidden sm:flex items-center gap-4 text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest pl-2">
+                  <Link href="/" className="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors">Beranda</Link>
+                  <Link href="/dashboard" className="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors">Dashboard</Link>
+                </nav>
               </div>
               <div className="flex-none flex items-center gap-3">
                 <ThemeToggle />
@@ -83,6 +88,7 @@ export default function RootLayout({
             <p>© {new Date().getFullYear()} FoodReview ID. UAS Pemrograman Web 2.</p>
             <div className="flex gap-4">
               <Link href="/" className="hover:text-zinc-700 dark:hover:text-zinc-350 transition-colors">Beranda</Link>
+              <Link href="/dashboard" className="hover:text-zinc-700 dark:hover:text-zinc-350 transition-colors">Dashboard</Link>
               <Link href="/restaurants/new" className="hover:text-zinc-700 dark:hover:text-zinc-350 transition-colors">Tambah Tempat</Link>
             </div>
           </div>
