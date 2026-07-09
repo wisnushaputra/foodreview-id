@@ -45,7 +45,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-950 selection:bg-zinc-200 dark:selection:bg-zinc-800 selection:text-zinc-900 dark:selection:text-zinc-100">
+      <body 
+        className="min-h-full flex flex-col text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-950 selection:bg-zinc-200 dark:selection:bg-zinc-800 selection:text-zinc-900 dark:selection:text-zinc-100"
+        suppressHydrationWarning
+      >
         <ToastProvider />
         {/* Sticky Minimalist Navbar */}
         <header className="sticky top-0 z-50 w-full glass-card border-x-0 border-t-0 border-b border-zinc-200/40 dark:border-zinc-800/40 bg-white/75 dark:bg-zinc-950/75 backdrop-blur-md">

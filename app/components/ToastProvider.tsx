@@ -16,6 +16,7 @@ const TOAST_MESSAGES: Record<string, { message: string; type: 'success' | 'error
   review_created: { message: 'Ulasan Anda berhasil diterbitkan! Terima kasih atas kontribusinya. 🌟', type: 'success' },
   review_updated: { message: 'Ulasan Anda berhasil diperbarui! ✏️', type: 'success' },
   review_deleted: { message: 'Ulasan telah berhasil dihapus.', type: 'success' },
+  link_copied: { message: 'Tautan restoran berhasil disalin ke clipboard! 🔗', type: 'success' },
   error: { message: 'Terjadi kesalahan sistem. Silakan coba kembali.', type: 'error' },
 };
 
@@ -54,6 +55,19 @@ export default function ToastProvider() {
       removeToast(id);
     }, 4000);
   };
+
+  // Listener untuk event kustom 'show-toast'
+  useEffect(() => {
+    const handleToastEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ message: string; type: 'success' | 'error' | 'info' }>;
+      if (customEvent.detail) {
+        addToast(customEvent.detail.message, customEvent.detail.type);
+      }
+    };
+
+    window.addEventListener('show-toast', handleToastEvent);
+    return () => window.removeEventListener('show-toast', handleToastEvent);
+  }, []);
 
   const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));

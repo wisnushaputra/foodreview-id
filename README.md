@@ -35,8 +35,11 @@ Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL
   - Mendukung fallback otomatis berbasis memori agar dashboard tetap terisi saat database kosong.
 - **CRUD Ulasan & Rating**:
   - Tulis ulasan baru lengkap dengan nama pengulas, ulasan teks, dan pilihan rating bintang (1-5) menggunakan selector bintang interaktif.
+  - **Grafik Distribusi Bintang (Rating Breakdown)**: Menampilkan visualisasi persentase ulasan berdasarkan bintang (1-5) pada halaman detail restoran untuk ringkasan ulasan yang informatif.
   - Edit ulasan yang sudah ditulis sebelumnya.
   - Hapus ulasan individual.
+- **Fitur Bagikan Tautan (Share Button)**:
+  - Tombol "Bagikan" interaktif untuk menyalin URL detail restoran langsung ke clipboard perangkat secara instan, lengkap dengan notifikasi melayang konfirmasi sukses.
 - **Auto-Seeding Database**:
   - Jika database dalam keadaan kosong saat pertama kali dijalankan, sistem akan otomatis melakukan *seeding* (memasukkan) 6 data dummy kuliner legendaris dan pedagang kaki lima (PKL) beserta ulasannya ke database PostgreSQL agar aplikasi langsung siap dicoba.
 - **UI/UX Minimalis & Glassmorphism**:

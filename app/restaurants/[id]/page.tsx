@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import DeleteButton from "@/app/components/DeleteButton";
+import ShareButton from "@/app/components/ShareButton";
 
 interface RestaurantDetailProps {
   params: Promise<{ id: string }>;
@@ -135,18 +136,25 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
               </div>
 
               {/* Action buttons */}
-              <div className="pt-4 border-t border-zinc-100 flex items-center gap-3">
+              <div className="pt-4 border-t border-zinc-150 flex flex-wrap items-center gap-3">
+                <ShareButton />
                 <Link 
                   href={`/restaurants/${resolvedParams.id}/edit`} 
-                  className="flex-1 inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-55 hover:border-zinc-300 transition-colors shadow-sm"
+                  className="flex-1 inline-flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-850 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors shadow-sm gap-2"
                 >
-                  Edit Tempat
+                  <svg className="w-4 h-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  Edit
                 </Link>
-                <form action={deleteRestaurant} className="flex-1">
+                <form action={deleteRestaurant} className="flex-grow sm:flex-grow-0 min-w-[100px]">
                   <DeleteButton 
                     confirmMessage="Apakah Anda yakin ingin menghapus restoran ini? Semua ulasan juga akan dihapus."
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-rose-50 hover:bg-rose-100/70 border border-rose-100 text-rose-650 px-4 py-2 text-sm font-semibold transition-colors"
+                    className="w-full inline-flex items-center justify-center rounded-lg bg-rose-50 dark:bg-rose-950/20 hover:bg-rose-100/70 dark:hover:bg-rose-950/40 border border-rose-100 dark:border-rose-900/50 text-rose-650 dark:text-rose-400 px-4 py-2 text-sm font-semibold transition-colors gap-2"
                   >
+                    <svg className="w-4 h-4 text-rose-600 dark:text-rose-450" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
                     Hapus
                   </DeleteButton>
                 </form>
@@ -171,13 +179,39 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
             </Link>
           </div>
 
-          {/* Average Rating Block */}
+          {/* Average Rating Block & Breakdown Grid */}
           {restaurant.reviews.length > 0 && (
-            <div className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/50 bg-zinc-50/50">
-              <div className="text-3xl font-black text-zinc-900">{averageRating.toFixed(1)}</div>
-              <div className="space-y-1">
-                {renderStars(averageRating)}
-                <div className="text-xs text-zinc-500 dark:text-zinc-400">Rating rata-rata dari seluruh ulasan</div>
+            <div className="rounded-xl border border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 p-5 shadow-sm space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200 dark:divide-zinc-800">
+                {/* Left Side: Score */}
+                <div className="flex flex-col items-center text-center space-y-1 sm:pr-4">
+                  <div className="text-4xl font-black text-zinc-900 dark:text-zinc-50">{averageRating.toFixed(1)}</div>
+                  {renderStars(averageRating)}
+                  <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Rating rata-rata dari {restaurant.reviews.length} ulasan</div>
+                </div>
+
+                {/* Right Side: Progress Bars */}
+                <div className="pt-4 sm:pt-0 sm:pl-6 space-y-1.5 flex-grow w-full">
+                  {[5, 4, 3, 2, 1].map((stars) => {
+                    const count = restaurant.reviews.filter((r) => r.rating === stars).length;
+                    const percentage = (count / restaurant.reviews.length) * 100;
+                    return (
+                      <div key={stars} className="flex items-center gap-3 text-xs font-semibold">
+                        <span className="w-3 text-zinc-700 dark:text-zinc-300">{stars}</span>
+                        <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <div className="flex-grow bg-zinc-200 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+                          <div
+                            className="bg-amber-400 h-1.5 rounded-full transition-all duration-300"
+                            style={{ width: `${percentage}%` }}
+                          ></div>
+                        </div>
+                        <span className="w-6 text-right text-zinc-400 dark:text-zinc-500 font-medium">{count}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
