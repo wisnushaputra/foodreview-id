@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, useCallback, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface Toast {
@@ -22,6 +22,12 @@ const TOAST_MESSAGES: Record<string, { message: string; type: 'success' | 'error
 
 function ToastListener({ onShow }: { onShow: (message: string, type: 'success' | 'error' | 'info') => void }) {
   const searchParams = useSearchParams();
+  const onShowRef = useRef(onShow);
+
+  // Selalu update ref ke fungsi terbaru
+  useEffect(() => {
+    onShowRef.current = onShow;
+  }, [onShow]);
 
   useEffect(() => {
     const successVal = searchParams.get('success');
@@ -30,7 +36,7 @@ function ToastListener({ onShow }: { onShow: (message: string, type: 'success' |
 
     if (toastKey && TOAST_MESSAGES[toastKey]) {
       const config = TOAST_MESSAGES[toastKey];
-      onShow(config.message, config.type);
+      onShowRef.current(config.message, config.type);
 
       // Hapus search parameter dari URL secara bersih tanpa memicu reload halaman
       const url = new URL(window.location.href);
@@ -38,7 +44,7 @@ function ToastListener({ onShow }: { onShow: (message: string, type: 'success' |
       url.searchParams.delete('error');
       window.history.replaceState({}, '', url.pathname + url.search);
     }
-  }, [searchParams, onShow]);
+  }, [searchParams]);
 
   return null;
 }
@@ -46,7 +52,11 @@ function ToastListener({ onShow }: { onShow: (message: string, type: 'success' |
 export default function ToastProvider() {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const addToast = (message: string, type: 'success' | 'error' | 'info') => {
+  const removeToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const addToast = useCallback((message: string, type: 'success' | 'error' | 'info') => {
     const id = Math.random().toString(36).substring(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
@@ -54,7 +64,7 @@ export default function ToastProvider() {
     setTimeout(() => {
       removeToast(id);
     }, 4000);
-  };
+  }, [removeToast]);
 
   // Listener untuk event kustom 'show-toast'
   useEffect(() => {
@@ -67,11 +77,7 @@ export default function ToastProvider() {
 
     window.addEventListener('show-toast', handleToastEvent);
     return () => window.removeEventListener('show-toast', handleToastEvent);
-  }, []);
-
-  const removeToast = (id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  };
+  }, [addToast]);
 
   return (
     <>
