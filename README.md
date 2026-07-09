@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FoodReview ID
 
-## Getting Started
+**FoodReview ID** adalah platform komunitas berbasis web untuk berbagi pengalaman kuliner. 
+Platform ini memungkinkan pengguna untuk:
 
-First, run the development server:
+- Menambah, melihat, mengedit, dan menghapus **Restoran**.
+- Menambah, melihat, mengedit, dan menghapus **Ulasan** yang berelasi dengan restoran.
 
+Platform ini dibangun dengan **Next.js** (App Router), **PostgreSQL**, **Prisma**, dan **Tailwind CSS + DaisyUI** untuk antarmuka yang menarik.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14 (App Router, TypeScript)
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **UI & Styling:** Tailwind CSS + DaisyUI
+- **Deployment:** Lokal (Docker tidak diminta, tapi bisa dimasukkan)
+
+---
+
+## 🚀 Cara Menjalankan Secara Lokal
+
+Ikuti langkah-langkah berikut:
+
+### 1️⃣ Persiapan Database
+1. Pastikan PostgreSQL terinstal di komputer.
+   - Windows: [PostgreSQL Installer](https://www.enterprisedatabase.com/downloads)
+   - macOS: `brew install postgresql`
+   - Linux: `sudo apt install postgresql`
+2. Buat database baru, misalnya `foodreview_db`.
+3. Buat user PostgreSQL dan beri hak hak akses penuh ke database tersebut.
+   ```sql
+   CREATE USER foodreview_user WITH PASSWORD 'your_strong_password';
+   CREATE DATABASE foodreview_db OWNER foodreview_user;
+   GRANT ALL PRIVILEGES ON DATABASE foodreview_db TO foodreview_user;
+   ```
+
+### 2️⃣ Konfigurasi Environment
+1. Salin file `.env.example` menjadi `.env` di root project.
+   ```bash
+   cp .env.example .env
+   ```
+2. Edit file `.env` dan isi nilai **DATABASE_URL** dengan format berikut:
+   ```
+   DATABASE_URL="postgresql://foodreview_user:your_strong_password@localhost:5432/foodreview_db?schema=public"
+   ```
+
+### 3️⃣ Instalasi & Migrasi Database
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Instal semua dependensi
+npm install
+
+# Generate Prisma client (jika belum)
+npm run prisma:generate
+
+# Push skema Prisma ke database (membuat tabel)
+npm run prisma:db:push
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Catatan:** Jika ingin membuat migrasi SQL berupa file, jalankan `npm run prisma:db:migrate`. Namun untuk tugas ini `prisma:db:push` sudah cukup.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4️⃣ Jalankan Aplikasi
+```bash
+npm run dev
+```
+Aplikasi akan berjalan di `http://localhost:3000`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📌 Catatan Tambahan
 
-To learn more about Next.js, take a look at the following resources:
+- Semua data disimpan di PostgreSQL. Pastikan service PostgreSQL berjalan sebelum menjalankan `prisma:db:push`.
+- Untuk development, Anda dapat mengakses database melalui tools seperti **pgAdmin** atau **DBeaver**.
+- Jika ingin menambahkan authentikasi atau fitur lain, gunakan middleware Next.js atau library seperti `next-auth`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

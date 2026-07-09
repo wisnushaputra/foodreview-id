@@ -21,11 +21,11 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>()) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} bg-base-100 text-base-200 h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
