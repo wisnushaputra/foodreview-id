@@ -135,7 +135,7 @@ export default async function Home() {
           return (
             <svg
               key={i}
-              className={`w-3.5 h-3.5 ${isFilled ? "text-amber-400 fill-amber-400" : "text-zinc-200 fill-zinc-100"}`}
+              className={`w-3.5 h-3.5 ${isFilled ? "text-amber-400 fill-amber-400" : "text-zinc-200 dark:text-zinc-800 fill-zinc-100 dark:fill-zinc-900/50"}`}
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -156,27 +156,27 @@ export default async function Home() {
   return (
     <div className="space-y-12">
       {/* Premium Minimal Hero */}
-      <section className="relative overflow-hidden rounded-2xl border border-zinc-200/50 bg-gradient-to-b from-zinc-50 to-white p-8 md:p-12 lg:p-16">
-        <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-amber-150/30 blur-3xl"></div>
-        <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-zinc-100 blur-3xl"></div>
+      <section className="relative overflow-hidden rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-950 p-8 md:p-12 lg:p-16">
+        <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-amber-500/10 blur-3xl"></div>
+        <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-zinc-100 dark:bg-zinc-800/10 blur-3xl"></div>
         
         <div className="relative max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
             Jelajahi Kuliner,<br />Bagikan Pengalaman Anda.
           </h1>
-          <p className="mt-4 text-base md:text-lg text-zinc-500 font-light leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
             Temukan destinasi kuliner terfavorit di Indonesia dan bagikan ulasan jujur Anda bersama komunitas kami.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link 
               href="/restaurants/new" 
-              className="inline-flex items-center justify-center rounded-lg bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-zinc-850 active:scale-95 transition-all duration-150 shadow-sm"
+              className="inline-flex items-center justify-center rounded-lg bg-zinc-950 dark:bg-zinc-50 px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 hover:bg-zinc-850 dark:hover:bg-zinc-200 active:scale-95 transition-all duration-150 shadow-sm"
             >
               Tambah Restoran
             </Link>
             <a 
               href="#restoran-pilihan" 
-              className="inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 py-2.5 text-sm font-semibold text-zinc-650 hover:bg-zinc-50 active:scale-95 transition-all duration-150"
+              className="inline-flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-zinc-600 dark:text-zinc-300 hover:bg-zinc-55 dark:hover:bg-zinc-800 active:scale-95 transition-all duration-150"
             >
               Lihat Semua
             </a>
@@ -186,13 +186,13 @@ export default async function Home() {
 
       {/* Featured Restaurants Section */}
       <main id="restoran-pilihan" className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-zinc-150 pb-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-zinc-150 dark:border-zinc-850 pb-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900">Restoran Pilihan</h2>
-            <p className="text-sm text-zinc-400 mt-1">Daftar restoran pilihan yang dikurasi oleh para penikmat kuliner.</p>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Restoran Pilihan</h2>
+            <p className="text-sm text-zinc-400 dark:text-zinc-500 mt-1">Daftar restoran pilihan yang dikurasi oleh para penikmat kuliner.</p>
           </div>
           {dbRestaurants.length === 0 && (
-            <span className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium border border-amber-200/50 self-start md:self-auto">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-900/50 self-start md:self-auto font-medium">
               Mode Demo (Database Kosong)
             </span>
           )}
@@ -204,10 +204,10 @@ export default async function Home() {
             return (
               <div 
                 key={r.id} 
-                className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200/60 bg-white hover:border-zinc-350 transition-all duration-300"
+                className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900/30 hover:border-zinc-350 dark:hover:border-zinc-700 transition-all duration-300"
               >
                 {/* Image Container with Hover Effect */}
-                <div className="card-img-container bg-zinc-100">
+                <div className="card-img-container bg-zinc-100 dark:bg-zinc-850">
                   {r.imageUrl ? (
                     <img 
                       src={r.imageUrl} 
@@ -216,14 +216,14 @@ export default async function Home() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-zinc-50 text-zinc-400">
+                    <div className="flex h-full w-full items-center justify-center bg-zinc-50 dark:bg-zinc-850 text-zinc-400 dark:text-zinc-500">
                       <svg className="w-8 h-8 stroke-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
                   )}
                   <div className="absolute top-3 left-3">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold text-zinc-900 shadow-sm backdrop-blur-sm border border-zinc-150">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/95 dark:bg-zinc-900/95 px-2.5 py-1 text-xs font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm backdrop-blur-sm border border-zinc-150 dark:border-zinc-800">
                       📍 {r.location}
                     </span>
                   </div>
@@ -232,27 +232,27 @@ export default async function Home() {
                 {/* Content */}
                 <div className="flex flex-col flex-grow p-5 space-y-3">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-zinc-900 group-hover:text-zinc-950 transition-colors">
+                    <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
                       {r.name}
                     </h3>
                   </div>
 
-                  <p className="text-sm text-zinc-500 line-clamp-2 leading-relaxed flex-grow">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-350 line-clamp-2 leading-relaxed flex-grow">
                     {r.description}
                   </p>
 
-                  <div className="pt-4 border-t border-zinc-100 flex items-center justify-between gap-4 mt-auto">
+                  <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between gap-4 mt-auto">
                     {/* Stars and Review Count */}
                     <div className="flex items-center gap-2">
                       {renderStars(avgRating)}
-                      <span className="text-xs font-medium text-zinc-400">
+                      <span className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
                         {avgRating > 0 ? avgRating.toFixed(1) : "-"} ({r.reviews.length})
                       </span>
                     </div>
 
                     <Link 
                       href={`/restaurants/${r.id}`} 
-                      className="inline-flex items-center justify-center rounded-lg bg-zinc-50 group-hover:bg-zinc-950 px-3.5 py-1.5 text-xs font-semibold text-zinc-700 group-hover:text-white transition-all duration-200"
+                      className="inline-flex items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800 group-hover:bg-zinc-950 dark:group-hover:bg-zinc-50 px-3.5 py-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-white dark:group-hover:text-zinc-950 transition-all duration-200"
                     >
                       Detail
                     </Link>

@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Konfigurasi Tailwind v4 dark variant untuk membaca data-theme="dark" */
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+
 /* Custom Scrollbar for premium look */
 ::-webkit-scrollbar {
   width: 8px;
@@ -33,12 +37,23 @@ body {
   background-attachment: fixed;
 }
 
+/* Dark mode body background */
+[data-theme="dark"] body {
+  background: radial-gradient(circle at top right, rgba(24, 24, 27, 0.4) 0%, rgba(9, 9, 11, 1) 100%);
+  color: #f4f4f5;
+}
+
 /* Minimalist Glass Card */
 .glass-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(228, 228, 231, 0.6);
+}
+
+[data-theme="dark"] .glass-card {
+  background: rgba(9, 9, 11, 0.75);
+  border: 1px solid rgba(63, 63, 70, 0.4);
 }
 
 /* Ensure images cover the container properly and look sharp */
@@ -62,4 +77,60 @@ img {
 .card-img-container:hover img {
   transform: scale(1.05);
 }
+
+/* Global Dark Mode Overrides for Custom Elements */
+[data-theme="dark"] input:not([type="radio"]):not([type="checkbox"]),
+[data-theme="dark"] textarea {
+  background-color: #121214 !important;
+  color: #f4f4f5 !important;
+  border-color: #27272a !important;
+}
+
+[data-theme="dark"] input:not([type="radio"]):not([type="checkbox"]):focus,
+[data-theme="dark"] textarea:focus {
+  border-color: #f4f4f5 !important;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: rgba(24, 24, 27, 0.45) !important;
+  color: #f4f4f5 !important;
+}
+
+[data-theme="dark"] .bg-zinc-50 {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+}
+
+[data-theme="dark"] .bg-zinc-100 {
+  background-color: #27272a !important;
+  color: #f4f4f5 !important;
+}
+
+[data-theme="dark"] .border-zinc-200,
+[data-theme="dark"] .border-zinc-200\/50,
+[data-theme="dark"] .border-zinc-150 {
+  border-color: rgba(63, 63, 70, 0.4) !important;
+}
+
+[data-theme="dark"] .text-zinc-900 {
+  color: #f4f4f5 !important;
+}
+
+[data-theme="dark"] .text-zinc-700 {
+  color: #e4e4e7 !important;
+}
+
+[data-theme="dark"] .text-zinc-650,
+[data-theme="dark"] .text-zinc-600 {
+  color: #d4d4d8 !important;
+}
+
+[data-theme="dark"] .text-zinc-500 {
+  color: #a1a1aa !important;
+}
+
+[data-theme="dark"] .text-zinc-450 {
+  color: #71717a !important;
+}
+
 

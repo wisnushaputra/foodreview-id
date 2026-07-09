@@ -61,7 +61,7 @@ export default function NewRestaurantPage() {
     <div className="max-w-xl mx-auto space-y-6">
       {/* Back Button */}
       <div>
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-450 hover:text-zinc-800 transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 transition-colors">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -72,7 +72,7 @@ export default function NewRestaurantPage() {
       <div className="rounded-xl border border-zinc-200/50 bg-white p-6 md:p-8 shadow-sm space-y-6">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-zinc-900">Tambah Restoran Baru</h1>
-          <p className="text-xs text-zinc-450 mt-1">Masukkan detail informasi restoran untuk dibagikan ke komunitas.</p>
+          <p className="text-xs text-zinc-500 mt-1">Masukkan detail informasi restoran untuk dibagikan ke komunitas.</p>
         </div>
 
         <form action={createRestaurant} encType="multipart/form-data" className="space-y-4">

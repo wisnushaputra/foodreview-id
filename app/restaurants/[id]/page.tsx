@@ -94,7 +94,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
     <div className="space-y-6">
       {/* Back Button */}
       <div>
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-450 hover:text-zinc-800 transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 transition-colors">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -113,7 +113,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
               {restaurant.imageUrl ? (
                 <img src={restaurant.imageUrl} alt={restaurant.name} className="w-full h-full object-cover" />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-zinc-50 text-zinc-450">
+                <div className="flex h-full w-full items-center justify-center bg-zinc-50 text-zinc-500">
                   <svg className="w-12 h-12 stroke-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -130,7 +130,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
                 <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 mt-1">{restaurant.name}</h1>
               </div>
 
-              <div className="text-zinc-650 leading-relaxed text-sm whitespace-pre-line border-t border-zinc-100 pt-4">
+              <div className="text-zinc-700 dark:text-zinc-300 leading-relaxed text-sm whitespace-pre-line border-t border-zinc-100 pt-4">
                 {restaurant.description}
               </div>
 
@@ -160,7 +160,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
           <div className="flex items-center justify-between gap-4 border-b border-zinc-150 pb-4">
             <div>
               <h2 className="text-xl font-bold tracking-tight text-zinc-900">Ulasan Komunitas</h2>
-              <p className="text-xs text-zinc-400 mt-0.5">{restaurant.reviews.length} ulasan dari pengunjung.</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{restaurant.reviews.length} ulasan dari pengunjung.</p>
             </div>
             
             <Link 
@@ -177,7 +177,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
               <div className="text-3xl font-black text-zinc-900">{averageRating.toFixed(1)}</div>
               <div className="space-y-1">
                 {renderStars(averageRating)}
-                <div className="text-xs text-zinc-400">Rating rata-rata dari seluruh ulasan</div>
+                <div className="text-xs text-zinc-500 dark:text-zinc-400">Rating rata-rata dari seluruh ulasan</div>
               </div>
             </div>
           )}
@@ -207,7 +207,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
                     {renderStars(review.rating)}
                   </div>
 
-                  <p className="text-sm text-zinc-650 leading-relaxed pl-12 whitespace-pre-line">
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed pl-12 whitespace-pre-line">
                     {review.comment}
                   </p>
 
@@ -215,7 +215,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
                   <div className="pl-12 flex items-center gap-3 text-xs pt-1">
                     <Link 
                       href={`/restaurants/${resolvedParams.id}/reviews/${review.id}/edit`} 
-                      className="text-zinc-400 hover:text-zinc-900 transition-colors font-medium"
+                      className="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-medium"
                     >
                       Edit
                     </Link>
@@ -237,7 +237,7 @@ export default async function RestaurantDetailPage({ params }: RestaurantDetailP
                 <svg className="w-8 h-8 text-zinc-350 mx-auto stroke-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                <p className="text-sm text-zinc-400">Belum ada ulasan untuk restoran ini.</p>
+                <p className="text-sm text-zinc-500">Belum ada ulasan untuk restoran ini.</p>
                 <p className="text-xs text-zinc-400">Jadilah yang pertama untuk membagikan ulasan Anda!</p>
               </div>
             )}
