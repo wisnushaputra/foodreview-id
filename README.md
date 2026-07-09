@@ -1,79 +1,86 @@
 # FoodReview ID
 
-**FoodReview ID** adalah platform komunitas berbasis web untuk berbagi pengalaman kuliner. 
-Platform ini memungkinkan pengguna untuk:
+FoodReview ID adalah platform komunitas web untuk berbagi ulasan dan pengalaman kuliner. Project ini dibuat untuk memenuhi tugas **UAS Pemrograman Web 2**.
 
-- Menambah, melihat, mengedit, dan menghapus **Restoran**.
-- Menambah, melihat, mengedit, dan menghapus **Ulasan** yang berelasi dengan restoran.
+Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL sebagai database, Prisma sebagai ORM, serta Tailwind CSS & DaisyUI untuk tampilan UI/UX yang modern dan minimalis.
 
-Platform ini dibangun dengan **Next.js** (App Router), **PostgreSQL**, **Prisma**, dan **Tailwind CSS + DaisyUI** untuk antarmuka yang menarik.
+---
+
+## 📸 Demo Tampilan (Beranda)
+
+![FoodReview ID Demo](./public/demo-homepage.png)
+
+---
+
+## ✨ Fitur Utama
+
+- **CRUD Restoran**:
+  - Tambah restoran baru (Nama, Lokasi, Deskripsi).
+  - Unggah foto restoran dari file lokal (maksimal **5MB**) atau menempelkan URL gambar dari internet.
+  - Edit detail informasi restoran.
+  - Hapus restoran beserta seluruh ulasannya sekaligus (Cascade Delete).
+- **CRUD Ulasan & Rating**:
+  - Tulis ulasan baru lengkap dengan nama pengulas, ulasan teks, dan pilihan rating bintang (1-5) menggunakan selector bintang interaktif.
+  - Edit ulasan yang sudah ditulis sebelumnya.
+  - Hapus ulasan individual.
+- **Auto-Seeding Database**:
+  - Jika database dalam keadaan kosong saat pertama kali dijalankan, sistem akan otomatis melakukan *seeding* (memasukkan) 6 data dummy kuliner legendaris dan pedagang kaki lima (PKL) beserta ulasannya ke database PostgreSQL agar aplikasi langsung siap dicoba.
+- **UI/UX Minimalis & Glassmorphism**:
+  - Header navigasi *sticky* dengan efek blur kaca.
+  - Desain grid kartu yang responsif dengan efek zoom gambar saat di-hover.
+  - Bebas dari error *hydration mismatch* akibat ekstensi pihak ketiga.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 14 (App Router, TypeScript)
-- **Database:** PostgreSQL
-- **ORM:** Prisma
-- **UI & Styling:** Tailwind CSS + DaisyUI
-- **Deployment:** Lokal (Docker tidak diminta, tapi bisa dimasukkan)
+- **Framework**: Next.js 16 (TypeScript, App Router)
+- **Database**: PostgreSQL (berjalan secara lokal / Docker)
+- **ORM**: Prisma
+- **Styling**: Tailwind CSS v4 & DaisyUI v5
 
 ---
 
-## 🚀 Cara Menjalankan Secara Lokal
+## 🚀 Cara Menjalankan Project
 
-Ikuti langkah-langkah berikut:
+### 1. Prasyarat
+Pastikan Anda sudah menginstal:
+- Node.js (versi 20 atau lebih baru)
+- PostgreSQL
 
-### 1️⃣ Persiapan Database
-1. Pastikan PostgreSQL terinstal di komputer.
-   - Windows: [PostgreSQL Installer](https://www.enterprisedatabase.com/downloads)
-   - macOS: `brew install postgresql`
-   - Linux: `sudo apt install postgresql`
-2. Buat database baru, misalnya `foodreview_db`.
-3. Buat user PostgreSQL dan beri hak hak akses penuh ke database tersebut.
-   ```sql
-   CREATE USER foodreview_user WITH PASSWORD 'your_strong_password';
-   CREATE DATABASE foodreview_db OWNER foodreview_user;
-   GRANT ALL PRIVILEGES ON DATABASE foodreview_db TO foodreview_user;
-   ```
-
-### 2️⃣ Konfigurasi Environment
-1. Salin file `.env.example` menjadi `.env` di root project.
-   ```bash
-   cp .env.example .env
-   ```
-2. Edit file `.env` dan isi nilai **DATABASE_URL** dengan format berikut:
-   ```
-   DATABASE_URL="postgresql://foodreview_user:your_strong_password@localhost:5432/foodreview_db?schema=public"
-   ```
-
-### 3️⃣ Instalasi & Migrasi Database
+### 2. Instalasi Dependensi
+Jalankan perintah berikut di folder root project:
 ```bash
-# Instal semua dependensi
 npm install
-
-# Generate Prisma client (jika belum)
-npm run prisma:generate
-
-# Push skema Prisma ke database (membuat tabel)
-npm run prisma:db:push
 ```
 
-> **Catatan:** Jika ingin membuat migrasi SQL berupa file, jalankan `npm run prisma:db:migrate`. Namun untuk tugas ini `prisma:db:push` sudah cukup.
+### 3. Konfigurasi Database (.env)
+Buat file bernama `.env` di dalam folder root `foodreview-id/` dan isi koneksi database PostgreSQL Anda:
+```env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/foodreview_db?schema=public"
+```
+*Ganti `postgres`, `password`, dan `foodreview_db` sesuai dengan kredensial PostgreSQL lokal Anda.*
 
-### 4️⃣ Jalankan Aplikasi
+### 4. Push Schema & Auto-Seed
+Jalankan perintah berikut untuk mensinkronisasi skema tabel database dan mengisi data dummy awal:
+```bash
+npx prisma db push
+```
+
+### 5. Jalankan Server Development
+Jalankan aplikasi di komputer lokal:
 ```bash
 npm run dev
 ```
-Aplikasi akan berjalan di `http://localhost:3000`.
+Buka **`http://localhost:3000`** di browser Chrome Anda.
 
 ---
 
-## 📌 Catatan Tambahan
+## 📁 Struktur Folder Project
 
-- Semua data disimpan di PostgreSQL. Pastikan service PostgreSQL berjalan sebelum menjalankan `prisma:db:push`.
-- Untuk development, Anda dapat mengakses database melalui tools seperti **pgAdmin** atau **DBeaver**.
-- Jika ingin menambahkan authentikasi atau fitur lain, gunakan middleware Next.js atau library seperti `next-auth`.
-
----
-
+- `app/` - Halaman frontend utama (layout global, homepage, dan CRUD rute restoran/ulasan).
+- `app/api/` - Endpoint API untuk backend.
+- `app/components/` - Komponen React interaktif (seperti tombol hapus dengan konfirmasi dialog).
+- `lib/prisma.ts` - Singleton instance Prisma Client.
+- `prisma/` - Skema basis data Prisma (`schema.prisma`).
+- `public/` - Aset gambar statis dan folder penyimpanan file unggahan lokal (`public/uploads`).

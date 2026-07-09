@@ -1,12 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   const restaurant = await prisma.restaurant.findUnique({
     where: { id: params.id },
     include: { reviews: true },
@@ -16,8 +15,9 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   const body = await request.json();
   const restaurant = await prisma.restaurant.update({
     where: { id: params.id },
@@ -28,8 +28,9 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   await prisma.restaurant.delete({ where: { id: params.id } });
   return NextResponse.json({ message: "Restaurant deleted" });
 }
