@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Rounded zinc-950 background -->
+  <rect width="32" height="32" rx="9" fill="#09090b" />
+  
+  <!-- Stylized FR text brand -->
+  <text 
+    x="15" 
+    y="20" 
+    text-anchor="middle" 
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+    font-weight="900" 
+    font-size="12" 
+    fill="#ffffff" 
+    letter-spacing="-0.5"
+  >FR</text>
+  
+  <!-- Tiny Amber rating star in top right corner -->
+  <path d="M23 7l.6 1.4 1.5.2-1.1 1 .3 1.5-1.3-.7-1.3.7.3-1.5-1.1-1 1.5-.2z" fill="#f59e0b" />
+</svg>
