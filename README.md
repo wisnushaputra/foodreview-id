@@ -17,8 +17,13 @@ Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL
 - **CRUD Restoran**:
   - Tambah restoran baru (Nama, Lokasi, Deskripsi).
   - Unggah foto restoran dari file lokal (maksimal **5MB**) atau menempelkan URL gambar dari internet.
+  - **Validasi Sisi Klien & Preview Instan**: Memeriksa ukuran file secara otomatis sebelum diunggah (harus di bawah 5MB) dan menampilkan pratinjau gambar (*preview thumbnail*) secara instan demi UX yang optimal.
   - Edit detail informasi restoran.
   - Hapus restoran beserta seluruh ulasannya sekaligus (Cascade Delete).
+- **Fitur Pencarian & Filter Instan (Client-Side)**:
+  - Kotak pencarian real-time untuk mencari restoran berdasarkan nama, menu, deskripsi, atau kota.
+  - Dropdown filter lokasi dinamis yang mengekstrak daftar kota unik langsung dari database.
+  - Halaman kosong (*empty state*) interaktif lengkap dengan tombol reset jika pencarian tidak membuahkan hasil.
 - **CRUD Ulasan & Rating**:
   - Tulis ulasan baru lengkap dengan nama pengulas, ulasan teks, dan pilihan rating bintang (1-5) menggunakan selector bintang interaktif.
   - Edit ulasan yang sudah ditulis sebelumnya.

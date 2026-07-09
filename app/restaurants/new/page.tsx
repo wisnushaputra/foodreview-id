@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import ImageUploadInput from "@/app/components/ImageUploadInput";
 
 export default function NewRestaurantPage() {
   async function createRestaurant(formData: FormData) {
@@ -125,15 +126,7 @@ export default function NewRestaurantPage() {
             <div className="flex-grow border-t border-zinc-150"></div>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-wider">Pilih File Gambar</label>
-            <input 
-              type="file" 
-              name="imageFile" 
-              accept="image/*"
-              className="w-full text-sm text-zinc-500 file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border file:border-zinc-200 file:text-xs file:font-semibold file:bg-zinc-50 file:text-zinc-700 hover:file:bg-zinc-100 cursor-pointer" 
-            />
-          </div>
+          <ImageUploadInput />
 
           <div className="pt-4 flex items-center gap-3">
             <Link 
