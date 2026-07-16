@@ -1,10 +1,10 @@
 # FoodReview ID
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=vercel)](https://foodreview-id.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=vercel)](https://foodreview.wisnusha.my.id/)
 
 FoodReview ID adalah platform komunitas web untuk berbagi ulasan dan pengalaman kuliner. Project ini dibuat untuk memenuhi tugas **UAS Pemrograman Web 2**.
 
-**🔗 Live Demo:** [https://foodreview-id.vercel.app](https://foodreview-id.vercel.app)
+**🔗 Live Demo:** [https://foodreview.wisnusha.my.id/](https://foodreview.wisnusha.my.id/)
 
 Aplikasi ini menggunakan Next.js (App Router) untuk frontend/backend, PostgreSQL sebagai database, Prisma sebagai ORM, serta Tailwind CSS & DaisyUI untuk tampilan UI/UX yang modern dan minimalis.
 
